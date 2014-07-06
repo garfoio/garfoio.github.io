@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=500" />
+	<title>Teste - ScrollMagic</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<script type="text/javascript" src="js/TweenMax.min.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/modernizr.custom.min.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollmagic.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollmagic.debug.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<script>
+		$(document).ready(function($) {
+			// init controller
+			var controller = new ScrollMagic();
+	
+		
+			var tween_process = TweenMax.fromTo("#process-scene", 0.5, {top: '100%'}, {top: 0});
+			var tween_process_title = TweenMax.fromTo("#process-scene", 0.5, {paddingTop: '10px'}, {paddingTop: '50px'});
+			var tween_logo = new TimelineMax()
+				.add(TweenMax.to("#logo", 0.3, {bottom: "+=5", left: "-=6", rotation: -3}))
+				.add(TweenMax.to("#logo", 0.3, {bottom: "-=10", left: "+=6", rotation: 0}))
+				.add(TweenMax.to("#logo", 0.3, {bottom: "+=5", left: "+=6", rotation: 3}))
+				.add(TweenMax.to("#logo", 0.3, {bottom: "-=5", left: "-=3", rotation: 1.5}))
+				.add(TweenMax.to("#logo", 0.3, {bottom: "+=5", left: "-=6", rotation: -1.5}))
+				.add(TweenMax.to("#logo", 0.3, {bottom: "+=5", left: "+=3", rotation: 0}))
+				.add(TweenMax.to("#logo", 0.3, {bottom: "-=10"}));
+			var hide_logo = TweenMax.to("#logo", 0.5, {opacity: 0})
+
+			new ScrollScene({triggerHook: 1, duration: 150})
+				.setTween(tween_process)
+				.addTo(controller);
+
+			new ScrollScene({triggerHook: 1, duration: 150})
+				.setTween(tween_logo)
+				.addTo(controller);
+
+			new ScrollScene({triggerHook: 1, duration: 150})
+				.setTween(hide_logo)
+				.addTo(controller);
+
+			new ScrollScene({triggerHook: 1, duration: 150, offset: 150})
+									.setTween(tween_process_title)
+									.addTo(controller);
+
+		});
+	</script>
+
+</head>
+<body>
+	<section id="home-scene" class="full-page">
+		<header>
+			<img src="img/logo.jpg" id="logo">
+			<h3>Soluções <i>Open Source</i> para transformar sua ideia<br>Em produto de Software</h3>
+		</header>
+		<img src="img/prodution_line.jpg" class='prodution-line'>
+	</section>
+	<section id="process-scene" class="full-page from-bottom">
+		<div class="container">
+			<h1>Garfo</h1>
+		</div>
+	</section>
+
+	<div id="slides-scroll">
+		<div id="process-scroll" class="duration-300"></div>
+		<!-- <div id="shake-scroll" class="duration-900"></div> -->
+	</div>
+</body>
+</html>
