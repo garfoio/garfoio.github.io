@@ -1,5 +1,25 @@
 #home{
-    h1.logo{
+    #logo{
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        margin-left: -217.5px;
+    }
     
-    } 
+    h2{
+        position: absolute;
+        top: 270px;
+        width: 500px;
+        left: 50%;  
+        margin-left: -250px;
+        text-align: center; 
+        font-weight: 400;
+        color: @primary;
+        display: none;
+
+        &:before, &:after{
+            content: '"';
+            color: @dark;
+        }
+    }
 }
